@@ -25,6 +25,7 @@
 #pragma once
 #include "BluetoothObject.hpp"
 #include "BluetoothManager.hpp"
+#include "BluetoothUUID.hpp"
 #include <vector>
 
 /* Forward declaration of types */
@@ -109,6 +110,15 @@ public:
     bool stop_discovery (
     );
 
+    /** Sets the device discovery filter for the caller. If all fields are empty,
+      * filter is removed.
+      * @param uuids Vector of UUIDs to filter on
+      * @param rssi RSSI low bounded threshold
+      * @param pathloss Pathloss threshold value
+      * @param transport Type of scan to run
+      */
+    bool set_discovery_filter (std::vector<BluetoothUUID> uuids,
+    int16_t rssi, uint16_t pathloss, const TransportType &transport);
 
     /** Returns a list of BluetoothDevices visible from this adapter.
       * @return A list of BluetoothDevices visible on this adapter,
